@@ -58,8 +58,12 @@ const MabotChat: React.FC = () => {
       const data = await res.json();
       const botMsg = data.reply || "(Sin respuesta)";
       setMessages((msgs) => [...msgs, { role: "assistant", content: botMsg }]);
-    } catch (err: any) {
-      setError(err.message || "Error de conexión");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error de conexión");
+      }
     } finally {
       setLoading(false);
     }

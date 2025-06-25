@@ -48,9 +48,9 @@ export async function POST(req: NextRequest) {
     const loginData = JSON.parse(loginText);
     token = loginData.access_token;
     logWithTime("[AsistenteBot] Token obtenido:", !!token);
-  } catch (e) {
+  } catch (e: unknown) {
     errorWithTime("[AsistenteBot] Error de autenticación:", e);
-    return NextResponse.json({ error: "Error de autenticación", detail: String(e) }, { status: 401 });
+    return NextResponse.json({ error: "Error de autenticación", detail: e instanceof Error ? e.message : String(e) }, { status: 401 });
   }
 
   // 2. Enviar mensaje al bot
@@ -90,8 +90,8 @@ export async function POST(req: NextRequest) {
     const reply = botData.messages?.[0]?.contents?.[0]?.value || "(Sin respuesta)";
     logWithTime("[AsistenteBot] Bot reply:", reply);
     return NextResponse.json({ reply });
-  } catch (e) {
+  } catch (e: unknown) {
     errorWithTime("[AsistenteBot] Error de conexión con el bot:", e);
-    return NextResponse.json({ error: "Error de conexión con el bot", detail: String(e) }, { status: 500 });
+    return NextResponse.json({ error: "Error de conexión con el bot", detail: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }
 } 
