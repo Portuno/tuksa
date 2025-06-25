@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 
-function logWithTime(...args: any[]) {
+function logWithTime(...args: unknown[]) {
   console.log(`[${new Date().toISOString()}]`, ...args);
 }
-function errorWithTime(...args: any[]) {
+function errorWithTime(...args: unknown[]) {
   console.error(`[${new Date().toISOString()}]`, ...args);
 }
 
