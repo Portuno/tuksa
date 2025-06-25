@@ -1,103 +1,40 @@
-import Image from "next/image";
+import Header from "../components/Header";
+import ResourceCard from "../components/ResourceCard";
+import IAAgentPlaceholder from "../components/IAAgentPlaceholder";
+import { resources } from "../data/resources";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+    <main className="min-h-screen bg-gray-50 flex flex-col">
+      <Header />
+      <section className="flex flex-col items-center justify-center py-16 px-4 text-center bg-gradient-to-b from-blue-50 to-transparent">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-blue-700 mb-4">Tuksa</h1>
+        <p className="text-lg md:text-xl text-gray-700 max-w-2xl mb-6">
+          Recursos inmobiliarios listos para usar. Descargá contratos, planillas y más. Próximamente: tu agente de IA para resolver todas tus dudas.
+        </p>
+      </section>
+      <section className="max-w-4xl mx-auto w-full px-4 py-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Recursos destacados</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {resources.slice(0, 3).map((resource) => (
+            <ResourceCard key={resource.url} resource={resource} />
+          ))}
+        </div>
+        <div className="flex justify-end mt-4">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/recursos"
+            className="text-blue-600 hover:underline font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 rounded px-2 py-1"
+            tabIndex={0}
+            aria-label="Ver todos los recursos"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+            Ver todos los recursos →
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+      <IAAgentPlaceholder />
+      <footer className="w-full text-center py-6 mt-auto text-gray-500 text-sm bg-white border-t">
+        © {new Date().getFullYear()} Tuksa. Todos los derechos reservados.
       </footer>
-    </div>
+    </main>
   );
 }
