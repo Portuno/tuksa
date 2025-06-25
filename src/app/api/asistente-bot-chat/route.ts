@@ -59,7 +59,7 @@ export async function POST(req: NextRequest) {
     const chatId = getChatId(chat_id);
     const bodyToSend = {
       platform: "web",
-      bot_username: "asistentebot", // Cambia esto por el username real del bot asistente
+      bot_username: "inmoredes",
       chat_id: chatId,
       messages: [
         {

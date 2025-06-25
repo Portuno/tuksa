@@ -51,9 +51,16 @@ const AsistenteBotChat: React.FC = () => {
     if (!chatId) return;
     setLoading(true);
     setError(null);
+    const plainTextMsg =
+      `Plataforma: ${form.plataforma}\n` +
+      `Objetivo: ${form.objetivo}\n` +
+      `Público objetivo: ${form.publico_objetivo}\n` +
+      `Tono: ${form.tono}\n` +
+      `Idioma: ${form.idioma}\n` +
+      `Temática: ${input}`;
     const userMsg: Message = {
       role: "user",
-      content: JSON.stringify({ ...form, tematica: input }),
+      content: plainTextMsg,
     };
     setMessages((msgs) => [...msgs, userMsg]);
     setInput("");
